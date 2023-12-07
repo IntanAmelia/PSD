@@ -240,6 +240,16 @@ def main():
         <h5>Implementation</h5>
         <br>
         """, unsafe_allow_html=True)
+        clustering_model = pickle.load(open('dbscan_model.pkl', 'rb)
+        genre = st.text_input('Masukkan Genre Anime : ')
+        type = st.text_input('Masukkan Type Anime : ')
+        rating = st.text_input('Masukkan Rating Anime : ' )
+
+        #clustering = ''
+
+        #if st.button('Prediksi Cluster'):
+            #prediction = clustering_model.predict([[genre, type, rating]])
+            
         
 if __name__ == "__main__":
     main()
