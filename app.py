@@ -236,7 +236,7 @@ def main():
         st.pyplot(fig_test)
 
     with tab5:
-               st.write("""
+        st.write("""
         <h5>Implementation</h5>
         <br>
         """, unsafe_allow_html=True)
