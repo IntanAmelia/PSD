@@ -1,6 +1,6 @@
 # app.py
 #import library
-
+import pickle
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -14,7 +14,7 @@ from mpl_toolkits.mplot3d import Axes3D
 import seaborn as sns
 from sklearn.metrics import silhouette_score
 
-import pickle
+
 
 def main():
     st.set_page_config(
