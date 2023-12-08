@@ -240,7 +240,7 @@ def main():
         <h5>Implementation</h5>
         <br>
         """, unsafe_allow_html=True)
-        clustering_model = pickle.load(open('dbscan_model.pkl', 'wb'))
+        clustering_model = pickle.load(open('dbscan_model.sav', 'wb'))
         genre = st.text_input('Masukkan Genre Anime : ')
         type = st.text_input('Masukkan Type Anime : ')
         rating = st.text_input('Masukkan Rating Anime : ' )
