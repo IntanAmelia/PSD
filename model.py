@@ -34,6 +34,6 @@ data_test = pd.DataFrame(X_test, columns=['genre_encode','type_encoder','rating'
 data_test['Cluster'] = labels_test
 
 # Simpan model ke dalam file
-with open('dbscan_model.pkl', 'wb') as file:
+with open('dbscan_model.sav', 'wb') as file:
     pickle.dump(dbscan, file)
 
