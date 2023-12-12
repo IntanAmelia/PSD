@@ -245,26 +245,27 @@ def main():
         rating = st.text_input('Masukkan Rating Anime : ' )
 
         data = {'genre' : genre, 'type' : type, 'rating' : rating}
-        df = st.dataframe(data)
+        df = pd.dataframe(data)
+        df_1 = st.dataframe(df)
         label_encoder = LabelEncoder()#inisialisasi objek LabelEncoder
     
         #melakukan label encoding pada fitur 'genre'
-        df['genre_encode'] = label_encoder.fit_transform(df['genre'])
+        df_1['genre_encode'] = label_encoder.fit_transform(df_1['genre'])
     
         #melakukan label encoding pada fitur 'type'
-        df['type_encoder'] = label_encoder.fit_transform(df['type'])
+        df_1['type_encoder'] = label_encoder.fit_transform(df_1['type'])
     
             
         # Memilih kolom yang akan digunakan untuk clustering
         # Gantilah ['fitur_1', 'fitur_2', 'fitur_3'] dengan nama fitur yang sesuai dalam dataset Anda
-        X = df[['genre_encode','type_encoder','rating']].values
+        X = df_1[['genre_encode','type_encoder','rating']].values
     
         # Membuat objek DBSCAN
         # Sesuaikan nilai epsilon (eps) dan min_samples sesuai kebutuhan Anda
         dbscan = DBSCAN(eps=0.9, min_samples=3)
 
         if st.button('Prediksi Cluster'):
-            labels = dbscan.predict(X)
+            labels = dbscan.fit_predict(X)
             data_prediksi = pd.DataFrame(X, columns=['genre_encode','type_encoder','rating'])
             data_prediksi['Cluster'] = labels
             st.write("Hasil clustering : ")
