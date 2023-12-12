@@ -244,33 +244,37 @@ def main():
         type = st.text_input('Masukkan Type Anime : ')
         rating = st.text_input('Masukkan Rating Anime : ' )
 
-        data = {'genre' : [genre], 'type' : [type], 'rating' : [rating]}
-        df = pd.DataFrame(data)
-        df_1 = st.dataframe(df)
-        label_encoder = LabelEncoder()#inisialisasi objek LabelEncoder
-    
-        #melakukan label encoding pada fitur 'genre'
-        df_1['genre_encode'] = label_encoder.fit_transform(df_1['genre'])
-    
-        #melakukan label encoding pada fitur 'type'
-        df_1['type_encoder'] = label_encoder.fit_transform(df_1['type'])
-    
-            
-        # Memilih kolom yang akan digunakan untuk clustering
-        # Gantilah ['fitur_1', 'fitur_2', 'fitur_3'] dengan nama fitur yang sesuai dalam dataset Anda
-        X = df_1[['genre_encode','type_encoder','rating']].values
-    
-        # Membuat objek DBSCAN
-        # Sesuaikan nilai epsilon (eps) dan min_samples sesuai kebutuhan Anda
-        dbscan = DBSCAN(eps=0.9, min_samples=3)
-
         if st.button('Prediksi Cluster'):
+            data = {'genre' : [genre], 'type' : [type], 'rating' : [rating]}
+            df = pd.DataFrame(data)
+            df_1 = st.dataframe(df)
+            
+            label_encoder = LabelEncoder()#inisialisasi objek LabelEncoder
+        
+            #melakukan label encoding pada fitur 'genre'
+            df_1['genre_encode'] = label_encoder.fit_transform(df_1['genre'])
+        
+            #melakukan label encoding pada fitur 'type'
+            df_1['type_encoder'] = label_encoder.fit_transform(df_1['type'])
+        
+                
+            # Memilih kolom yang akan digunakan untuk clustering
+            # Gantilah ['fitur_1', 'fitur_2', 'fitur_3'] dengan nama fitur yang sesuai dalam dataset Anda
+            X = df_1[['genre_encode','type_encoder','rating']].values
+        
+            # Membuat objek DBSCAN
+            # Sesuaikan nilai epsilon (eps) dan min_samples sesuai kebutuhan Anda
+            dbscan = DBSCAN(eps=0.9, min_samples=3)
+
+        
             labels = dbscan.fit_predict(X)
             data_prediksi = pd.DataFrame(X, columns=['genre_encode','type_encoder','rating'])
             data_prediksi['Cluster'] = labels
             st.write("Hasil clustering : ")
             st.write(data_prediksi)
-
+        
+        
+            
         
 
             
