@@ -240,15 +240,40 @@ def main():
         <h5>Implementation</h5>
         <br>
         """, unsafe_allow_html=True)
-        clustering_model = pickle.load(open('dbscan_model.pkl', 'wb'))
         genre = st.text_input('Masukkan Genre Anime : ')
         type = st.text_input('Masukkan Type Anime : ')
         rating = st.text_input('Masukkan Rating Anime : ' )
 
-        #clustering = ''
+        data = {'genre' : genre, 'type' : type, 'rating' : rating}
+        df = pd.Dataframe(data)
+        
+        #inisialisasi objek LabelEncoder
+        label_encoder = LabelEncoder()
 
-        #if st.button('Prediksi Cluster'):
-            #prediction = clustering_model.predict([[genre, type, rating]])
+        #melakukan label encoding pada fitur 'genre'
+        df['genre_encode'] = label_encoder.fit_transform(df['genre'])
+
+        #melakukan label encoding pada fitur 'type'
+        df['type_encoder'] = label_encoder.fit_transform(df['type'])
+
+        
+        # Memilih kolom yang akan digunakan untuk clustering
+        # Gantilah ['fitur_1', 'fitur_2', 'fitur_3'] dengan nama fitur yang sesuai dalam dataset Anda
+        X = df[['genre_encode','type_encoder','rating']].values
+
+        # Membuat objek DBSCAN
+        # Sesuaikan nilai epsilon (eps) dan min_samples sesuai kebutuhan Anda
+        dbscan = DBSCAN(eps=0.9, min_samples=3)
+
+        # Melakukan clustering pada data pelatihan
+        if st.button('Prediksi Cluster'):
+            labels = dbscan.fit_predict(X)
+            data_prediksi['Cluster'] = labels
+            st.write("Hasil clustering : ")
+            st.write(data_prediksi)
+
+        
+
             
         
 if __name__ == "__main__":
