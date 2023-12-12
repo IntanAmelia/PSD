@@ -245,7 +245,7 @@ def main():
         rating = st.text_input('Masukkan Rating Anime : ' )
 
         data = {'genre' : genre, 'type' : type, 'rating' : rating}
-        df = pd.dataframe(data)
+        df = pd.DataFrame(data)
         df_1 = st.dataframe(df)
         label_encoder = LabelEncoder()#inisialisasi objek LabelEncoder
     
