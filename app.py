@@ -244,11 +244,13 @@ def main():
         type = st.text_input('Masukkan Type Anime : ')
         rating = st.text_input('Masukkan Rating Anime : ' )
 
+        data = {'genre' : genre, 'type' : type, 'rating' : rating}
+        df = pd.DataFrame(data)
+
         
         # Melakukan clustering pada data pelatihan
         if st.button('Prediksi Cluster'):
-            data = {'genre' : genre, 'type' : type, 'rating' : rating}
-            df = pd.DataFrame(data)
+            
             
             #inisialisasi objek LabelEncoder
             label_encoder = LabelEncoder()
