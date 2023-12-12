@@ -264,7 +264,7 @@ def main():
         dbscan = DBSCAN(eps=0.9, min_samples=3)
 
         if st.button('Prediksi Cluster'):
-            labels = dbscan.fit_predict(X)
+            labels = dbscan.predict(X)
             data_prediksi = pd.DataFrame(X, columns=['genre_encode','type_encoder','rating'])
             data_prediksi['Cluster'] = labels
             st.write("Hasil clustering : ")
