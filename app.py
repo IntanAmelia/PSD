@@ -247,20 +247,20 @@ def main():
         if st.button('Prediksi Cluster'):
             data = {'genre' : [genre], 'type' : [type], 'rating' : [rating]}
             df = pd.DataFrame(data)
-            df_1 = st.dataframe(df)
+            #df_1 = st.dataframe(df)
             
             label_encoder = LabelEncoder()#inisialisasi objek LabelEncoder
         
             #melakukan label encoding pada fitur 'genre'
-            df_1['genre_encode'] = label_encoder.fit_transform(df_1['genre'])
+            df['genre_encode'] = label_encoder.fit_transform(df['genre'])
         
             #melakukan label encoding pada fitur 'type'
-            df_1['type_encoder'] = label_encoder.fit_transform(df_1['type'])
+            df['type_encoder'] = label_encoder.fit_transform(df['type'])
         
                 
             # Memilih kolom yang akan digunakan untuk clustering
             # Gantilah ['fitur_1', 'fitur_2', 'fitur_3'] dengan nama fitur yang sesuai dalam dataset Anda
-            X = df_1[['genre_encode','type_encoder','rating']].values
+            X = df[['genre_encode','type_encoder','rating']].values
         
             # Membuat objek DBSCAN
             # Sesuaikan nilai epsilon (eps) dan min_samples sesuai kebutuhan Anda
