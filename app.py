@@ -250,8 +250,7 @@ def main():
         
         # Melakukan clustering pada data pelatihan
         if st.button('Prediksi Cluster'):
-            #inisialisasi objek LabelEncoder
-            label_encoder = LabelEncoder()
+            label_encoder = LabelEncoder()#inisialisasi objek LabelEncoder
     
             #melakukan label encoding pada fitur 'genre'
             df['genre_encode'] = label_encoder.fit_transform(df['genre'])
