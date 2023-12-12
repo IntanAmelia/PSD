@@ -263,10 +263,9 @@ def main():
         # Sesuaikan nilai epsilon (eps) dan min_samples sesuai kebutuhan Anda
         dbscan = DBSCAN(eps=0.9, min_samples=3)
 
-        
-        # Melakukan clustering pada data pelatihan
         if st.button('Prediksi Cluster'):
             labels = dbscan.fit_predict(X)
+            data_prediksi = pd.DataFrame(X, columns=['genre_encode','type_encoder','rating'])
             data_prediksi['Cluster'] = labels
             st.write("Hasil clustering : ")
             st.write(data_prediksi)
