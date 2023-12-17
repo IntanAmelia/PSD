@@ -272,7 +272,7 @@ def main():
             data_prediksi = pd.DataFrame(X, columns=['genre_encode','type_encoder','rating'])
             data_prediksi['Cluster'] = labels
             st.write("Hasil clustering : ")
-            st.write(data_prediksi.tail(20)
+            st.write(data_prediksi.tail(20))
         
         
             
