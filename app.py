@@ -247,8 +247,9 @@ def main():
         if st.button('Prediksi Cluster'):
             data = {'genre' : [genre], 'type' : [type], 'rating' : [rating]}
             df = pd.DataFrame(data)
-            #df_1 = st.dataframe(df)
-            
+            df_1 = pd.read_csv('https://raw.githubusercontent.com/IntanAmelia/PSD/main/dataset_imputasi_finish.csv)
+            df_2 = pd.concat([df_1,df], ignore_index = True)
+                               
             label_encoder = LabelEncoder()#inisialisasi objek LabelEncoder
         
             #melakukan label encoding pada fitur 'genre'
