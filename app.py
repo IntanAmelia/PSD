@@ -247,21 +247,21 @@ def main():
         if st.button('Prediksi Cluster'):
             data = {'genre' : [genre], 'type' : [type], 'rating' : [rating]}
             df = pd.DataFrame(data)
-            df_1 = pd.read_csv('https://raw.githubusercontent.com/IntanAmelia/PSD/main/dataset_imputasi_finish.csv)
+            df_1 = pd.read_csv('https://raw.githubusercontent.com/IntanAmelia/PSD/main/dataset_imputasi.csv')
             df_2 = pd.concat([df_1,df], ignore_index = True)
                                
             label_encoder = LabelEncoder()#inisialisasi objek LabelEncoder
         
             #melakukan label encoding pada fitur 'genre'
-            df['genre_encode'] = label_encoder.fit_transform(df['genre'])
+            df_2['genre_encode'] = label_encoder.fit_transform(df_2['genre'])
         
             #melakukan label encoding pada fitur 'type'
-            df['type_encoder'] = label_encoder.fit_transform(df['type'])
+            df_2['type_encoder'] = label_encoder.fit_transform(df_2['type'])
         
                 
             # Memilih kolom yang akan digunakan untuk clustering
             # Gantilah ['fitur_1', 'fitur_2', 'fitur_3'] dengan nama fitur yang sesuai dalam dataset Anda
-            X = df[['genre_encode','type_encoder','rating']].values
+            X = df_2[['genre_encode','type_encoder','rating']].values
         
             # Membuat objek DBSCAN
             # Sesuaikan nilai epsilon (eps) dan min_samples sesuai kebutuhan Anda
